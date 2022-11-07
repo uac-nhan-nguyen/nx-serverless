@@ -10,6 +10,7 @@
     "test": "nx run-many --target=test --all",
     "lint": "nx run-many --target=lint --all",
     "deploy": "nx run-many --target=deploy --all",
+    "deploy:prod": "NODE_ENV=prod nx run-many --target=deploy --stage=prod --all",
     "affected": "nx affected",
     "format": "nx format:write",
     "update": "nx migrate latest",
@@ -26,14 +27,14 @@
     "@aws-sdk/util-dynamodb": "3.80.0",
     "@middy/core": "2.5.7",
     "@middy/http-json-body-parser": "2.5.7",
+    "ajv": "^8.11.0",
+    "ajv-formats": "^2.1.1",
     "jsonwebtoken": "8.5.1",
     "middy": "0.36.0",
-    "ulid": "2.3.0",
-    "yup": "0.32.11",
-    "tslib": "2.0.0"
+    "tslib": "2.0.0",
+    "ulid": "2.3.0"
   },
   "devDependencies": {
-    "ts-morph": "15.0.0",
     "@aws-sdk/types": "3.55.0",
     "@jest/transform": "27.5.1",
     "@nrwl/cli": "14.1.2",
@@ -48,7 +49,7 @@
     "@types/aws-lambda": "8.10.93",
     "@types/jest": "27.4.1",
     "@types/jsonwebtoken": "8.5.8",
-    "@types/node": "15.12.4",
+    "@types/node": "^18.11.9",
     "@types/serverless": "3.0.2",
     "@types/terser-webpack-plugin": "5.0.4",
     "@types/webpack": "5.28.0",
@@ -69,6 +70,7 @@
     "serverless-offline": "8.8.0",
     "ts-jest": "27.1.4",
     "ts-loader": "9.2.8",
+    "ts-morph": "15.0.0",
     "ts-node": "9.1.1",
     "typescript": "4.6.3"
   },

@@ -7,6 +7,7 @@ const serverlessConfig: Partial<Serverless> = {
   service: `todos`,
   provider: {
     ...baseServerlessConfig.provider,
+    name: "aws",
     iam: {
       role: {
         statements: [
@@ -32,50 +33,50 @@ const serverlessConfig: Partial<Serverless> = {
     },
   },
   functions: {
-    'get-todos': {
-      handler: 'src/get-todos/get-todos-handler.main',
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'todos',
-          },
-        },
-      ],
-    },
-    'get-todo': {
-      handler: 'src/get-todo/get-todo-handler.main',
-      events: [
-        {
-          http: {
-            method: 'get',
-            path: 'todos/{id}',
-          },
-        },
-      ],
-    },
-    'create-todo': {
-      handler: 'src/create-todo/create-todo-handler.main',
-      events: [
-        {
-          http: {
-            method: 'post',
-            path: 'todos',
-          },
-        },
-      ],
-    },
-    'update-todo': {
-      handler: 'src/update-todo/update-todo-handler.main',
-      events: [
-        {
-          http: {
-            method: 'put',
-            path: 'todos/{id}',
-          },
-        },
-      ],
-    },
+    // 'get-todos': {
+    //   handler: 'src/get-todos/get-todos-handler.main',
+    //   events: [
+    //     {
+    //       http: {
+    //         method: 'get',
+    //         path: 'todos',
+    //       },
+    //     },
+    //   ],
+    // },
+    // 'get-todo': {
+    //   handler: 'src/get-todo/get-todo-handler.main',
+    //   events: [
+    //     {
+    //       http: {
+    //         method: 'get',
+    //         path: 'todos/{id}',
+    //       },
+    //     },
+    //   ],
+    // },
+    // 'create-todo': {
+    //   handler: 'src/create-todo/create-todo-handler.main',
+    //   events: [
+    //     {
+    //       http: {
+    //         method: 'post',
+    //         path: 'todos',
+    //       },
+    //     },
+    //   ],
+    // },
+    // 'update-todo': {
+    //   handler: 'src/update-todo/update-todo-handler.main',
+    //   events: [
+    //     {
+    //       http: {
+    //         method: 'put',
+    //         path: 'todos/{id}',
+    //       },
+    //     },
+    //   ],
+    // },
   },
 };
 

@@ -7,6 +7,7 @@ const serverlessConfig: Partial<Serverless> = {
   service: 'users',
   provider: {
     ...baseServerlessConfig.provider,
+    name: "aws",
     iam: {
       role: {
         statements: [
@@ -27,13 +28,13 @@ const serverlessConfig: Partial<Serverless> = {
     },
   },
   functions: {
-    'get-user': {
-      handler: 'src/get-user/get-user-handler.main',
+    'user-get': {
+      handler: 'src/endpoints/get.handler',
       events: [
         {
           http: {
             method: 'get',
-            path: 'user',
+            path: 'user/{id}',
           },
         },
       ],

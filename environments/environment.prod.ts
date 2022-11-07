@@ -2,10 +2,10 @@ import type { Environment } from './environment.types';
 
 export const env: Environment = {
   name: 'prod',
-  profile: '',
+  profile: 'nftjam',
   jwtSecret: '<SECRET>',
   dynamo: {
     tableName: `prod-AppTable`,
   },
-  region: 'eu-west-1',
+  region: 'us-east-2',
 };

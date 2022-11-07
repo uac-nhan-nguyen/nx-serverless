@@ -7,6 +7,7 @@ const serverlessConfig: Partial<Serverless> = {
   service: 'auth',
   provider: {
     ...baseServerlessConfig.provider,
+    name: "aws",
     iam: {
       role: {
         statements: [
@@ -28,7 +29,7 @@ const serverlessConfig: Partial<Serverless> = {
   },
   functions: {
     'sign-up': {
-      handler: 'src/sign-up/sign-up-handler.main',
+      handler: 'src/endpoints/sign-up.handler',
       events: [
         {
           http: {
