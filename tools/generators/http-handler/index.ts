@@ -32,7 +32,6 @@ interface Schema {
 export default async function (tree: Tree, schema: Schema) {
   if (!getProjects(tree).has(schema.project)) {
     logger.error(`Project ${schema.project} does not exist.`);
-
     return;
   }
 
@@ -43,7 +42,7 @@ export default async function (tree: Tree, schema: Schema) {
   const serverlessPath = joinPathFragments(`services/${schema.project}`, 'serverless.ts');
   const serverless = tree.read(serverlessPath)?.toString()
 
-  generateFiles(tree, joinPathFragments(__dirname, './files'), serviceSource, {
+  generateFiles(tree, joinPathFragments(__dirname, schema.method === 'POST' ? './files-POST' : './files'), serviceSource, {
     ...schema,
     tmpl: '',
     fileName: n.fileName,
@@ -64,7 +63,7 @@ export default async function (tree: Tree, schema: Schema) {
   funcValue.addPropertyAssignment({
     initializer: (writer) => {
       return Writers.object({
-        handler: `'src/${n.fileName}/${n.fileName}-handler.main'`,
+        handler: `'src/endpoints/${n.fileName}.handler'`,
         events: (writer) => {
           writer.write('[');
           Writers.object({
@@ -80,7 +79,7 @@ export default async function (tree: Tree, schema: Schema) {
     name: `'${n.fileName}'`,
   });
 
-  sourceFile.formatText({ indentSize: 2 });
+  sourceFile.formatText({indentSize: 2});
 
   tree.write(serverlessPath, sourceFile.getText());
 }

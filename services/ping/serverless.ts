@@ -20,7 +20,7 @@ const serverlessConfig: Partial<Serverless> = {
           path: 'ping'
         }
       }]
-    }
+    },
   },
 };
 
