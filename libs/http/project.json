@@ -2,16 +2,6 @@
   "root": "libs/http",
   "sourceRoot": "libs/http/src",
   "targets": {
-    "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/http",
-        "main": "libs/http/src/index.ts",
-        "tsConfig": "libs/http/tsconfig.lib.json",
-        "assets": ["libs/http/*.md"]
-      }
-    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],

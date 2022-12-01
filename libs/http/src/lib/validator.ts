@@ -28,7 +28,6 @@ export function validateSchema(schema: Record<string, unknown>): null | Error {
     ajv.compile(schema);
     return null;
   } catch (e) {
-    console.error(e);
     return new Error(`invalid_schema: ${e}`);
   }
   // return ajv.validateSchema(schema) as boolean;

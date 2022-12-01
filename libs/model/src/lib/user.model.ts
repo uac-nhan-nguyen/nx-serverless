@@ -1,6 +1,6 @@
 import {getItem, putItem} from "@app/db/dynamo-utils";
 import {env} from "@app/env";
-import {MAIN_TABLE} from "libs/core/src/lib/constants";
+import {MAIN_TABLE} from "@app/common";
 
 export type UserData = {
   PK: `User#${string}`; // {email}
