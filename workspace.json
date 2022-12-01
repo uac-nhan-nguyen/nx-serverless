@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "auth": "services/auth",
+    "common": "libs/common",
     "core": "services/core",
     "db": "libs/db",
     "http": "libs/http",

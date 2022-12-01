@@ -20,12 +20,13 @@
     "types": ["node"],
     "paths": {
       "@app/auth/*": ["libs/auth/src/lib/*"],
+      "@app/common": ["libs/common/src/index.ts"],
+      "@app/core/*": ["services/core/src/*"],
       "@app/db/*": ["libs/db/src/lib/*"],
       "@app/env": ["environments/environment.ts"],
       "@app/http/*": ["libs/http/src/lib/*"],
-      "@app/users/*": ["services/users/src/*"],
-      "@app/core/*": ["services/core/src/*"],
-      "@app/model/*": ["services/model/src/*"]
+      "@app/model/*": ["services/model/src/*"],
+      "@app/users/*": ["services/users/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
