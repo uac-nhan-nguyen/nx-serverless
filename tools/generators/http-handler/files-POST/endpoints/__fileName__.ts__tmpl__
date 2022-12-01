@@ -1,8 +1,27 @@
+import {APIResponse, createPOST, parseRequestBody} from "@app/http";
+import {JSONSchemaType} from "ajv";
 
-import {APIResponse, createGET} from "@app/http";
+export const handler = createPOST<Payload>(async (event) => {
+  const {email, name} = event.data;
 
-export const handler = createGET(async (event) => {
   return APIResponse.OK({
-    message: "OK"
-  })
-});
+    email, name
+  });
+})
+
+type Payload = {
+  email: string;
+  name: string;
+}
+
+const inputSchema: JSONSchemaType<Payload> = {
+  type: 'object',
+  required: ['email', 'name'],
+  properties: {
+    email: {type: 'string'},
+    name: {type: 'string'}
+  }
+}
+
+handler
+  .use(parseRequestBody(inputSchema));

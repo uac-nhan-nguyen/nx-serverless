@@ -1,27 +1,24 @@
 import {APIResponse, createPOST, parseRequestBody} from "@app/http";
 import {JSONSchemaType} from "ajv";
-import {UserRepo} from "libs/model/src/lib/user.model";
-import {createJWT} from '../auth.utils';
-
 
 export const handler = createPOST<Payload>(async (event) => {
   const {email, name} = event.data;
 
-  console.log(email)
-  await UserRepo.create(email, {name});
-
   return APIResponse.OK({
-    token: createJWT(email),
+    email, name
   });
 })
 
-type Payload = { email: string; name: string }
+type Payload = {
+  email: string;
+  name: string;
+}
 
 const inputSchema: JSONSchemaType<Payload> = {
   type: 'object',
   required: ['email', 'name'],
   properties: {
-    email: {type: 'string'},
+    email: {type: 'string', format: 'email'},
     name: {type: 'string'}
   }
 }

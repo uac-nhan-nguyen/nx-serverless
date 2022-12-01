@@ -1,4 +1,3 @@
-
 import {APIResponse, createGET} from "@app/http";
 
 export const handler = createGET(async (event) => {

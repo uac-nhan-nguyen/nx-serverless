@@ -12,6 +12,7 @@ Nx Serverless ajv flavor
 - [ ] Support aws layer
 - [ ] nx logs lambda
 - [ ] nx deploy function only
+- [x] serverless config only 1 version lambda 
 
 # How To
 

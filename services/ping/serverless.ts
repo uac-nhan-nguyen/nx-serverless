@@ -8,7 +8,7 @@ const serverlessConfig: Partial<Serverless> = {
     ...baseServerlessConfig.custom,
     'serverless-offline': {
       lambdaPort: 3005,
-      httpPort: 3006,
+      httpPort: 3001,
     },
   },
   functions: {
@@ -21,6 +21,15 @@ const serverlessConfig: Partial<Serverless> = {
         }
       }]
     },
+    'post': {
+      handler: 'src/endpoints/post.handler',
+      events: [{
+        http: {
+          method: 'post',
+          path: 'ping'
+        }
+      }]
+    }
   },
 };
 

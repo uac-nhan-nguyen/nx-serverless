@@ -9,6 +9,7 @@ export const baseServerlessConfigProvider: Serverless['provider'] = {
   memorySize: 128,
   profile: env.profile,
   stage: env.name,
+  versionFunctions: false,
   environment: {
     NODE_ENV: envName,
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
