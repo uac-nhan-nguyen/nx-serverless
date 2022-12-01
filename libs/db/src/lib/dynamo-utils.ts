@@ -1,8 +1,15 @@
 import {DocumentClient} from "aws-sdk/clients/dynamodb";
 import {env} from '@app/env'
+import AWS from "aws-sdk";
+
+const cred = env.accessKeyId && env.secretAccessKey ? new AWS.Credentials({
+  accessKeyId: env.accessKeyId,
+  secretAccessKey: env.secretAccessKey,
+}) : undefined
 
 export const db = new DocumentClient({
-  region: env.region
+  region: env.region,
+  credentials: cred
 });
 
 type DataKeys = {
