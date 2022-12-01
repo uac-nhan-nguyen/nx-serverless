@@ -4,6 +4,8 @@
     "auth": "services/auth",
     "common": "libs/common",
     "db": "libs/db",
-    "http": "libs/http"
+    "http": "libs/http",
+    "model": "libs/model",
+    "ping": "services/ping"
   }
 }

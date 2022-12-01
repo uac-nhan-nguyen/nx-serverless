@@ -5,8 +5,8 @@
   "scripts": {
     "nx": "nx",
     "localstack": "docker-compose up",
-    "build": "nx build",
     "serve": "NODE_ENV=local nx run-many --target=serve --all --stage=dev",
+    "build-all": "nx run-many --target=build --all",
     "test": "nx run-many --target=test --all",
     "lint": "nx run-many --target=lint --all",
     "deploy": "nx run-many --target=deploy --all",

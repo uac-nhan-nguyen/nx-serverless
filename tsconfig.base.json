@@ -23,7 +23,9 @@
       "@app/common": ["libs/common/src/index.ts"],
       "@app/db/*": ["libs/db/src/lib/*"],
       "@app/env": ["environments/environment.ts"],
-      "@app/http/*": ["libs/http/src/lib/*"]
+      "@app/http": ["libs/http/src/index.ts"],
+      "@app/http/*": ["libs/http/src/lib/*"],
+      "@app/model": ["libs/model/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

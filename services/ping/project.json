@@ -1,0 +1,68 @@
+{
+  "projectType": "application",
+  "sourceRoot": "services/ping/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "services/ping",
+        "color": true,
+        "command": "sls package"
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "services/ping",
+        "color": true,
+        "command": "sls offline start"
+      }
+    },
+    "logs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "services/ping",
+        "color": true,
+        "command": "sls logs --function {args.function}"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "services/ping",
+        "color": true,
+        "command": "sls deploy --verbose"
+      },
+      "dependsOn": [
+        {
+          "target": "deploy",
+          "projects": "dependencies"
+        }
+      ]
+    },
+    "remove": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "services/ping",
+        "color": true,
+        "command": "sls remove"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["services/ping/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/services/ping"],
+      "options": {
+        "jestConfig": "services/ping/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["service"],
+  "implicitDependencies": []
+}

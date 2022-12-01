@@ -1,3 +1,8 @@
+type IData = {
+  code?: string,
+  errors?: any,
+}
+
 const defaultHeaders = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Methods': '*',
@@ -49,10 +54,6 @@ export const parseError = (e: any) => {
   return APIResponse.Error(e.toString());
 }
 
-type IData = {
-  code?: string,
-  errors?: any,
-}
 
 export const APIResponse = {
   OK: (data: object) => response(200, data),
