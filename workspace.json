@@ -3,10 +3,7 @@
   "projects": {
     "auth": "services/auth",
     "common": "libs/common",
-    "core": "services/core",
     "db": "libs/db",
-    "http": "libs/http",
-    "todos": "services/todos",
-    "users": "services/users"
+    "http": "libs/http"
   }
 }

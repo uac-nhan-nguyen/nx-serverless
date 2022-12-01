@@ -26,6 +26,6 @@ export const env: Environment = {
   ...getCredentials(profile),
   dynamo: {
     // endpoint: 'http://localhost:4566',
-    tableName: `dev-AppTable`,
+    tableName: `nx-test-dev`,
   },
 };

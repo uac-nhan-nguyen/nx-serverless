@@ -45,6 +45,8 @@ export const addWorkspaceConfig = (
       },
     },
     tags: ['service'],
-    implicitDependencies: ['core'],
+    implicitDependencies: [
+      // 'core'
+    ],
   });
 };

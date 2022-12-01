@@ -21,12 +21,9 @@
     "paths": {
       "@app/auth/*": ["libs/auth/src/lib/*"],
       "@app/common": ["libs/common/src/index.ts"],
-      "@app/core/*": ["services/core/src/*"],
       "@app/db/*": ["libs/db/src/lib/*"],
       "@app/env": ["environments/environment.ts"],
-      "@app/http/*": ["libs/http/src/lib/*"],
-      "@app/model/*": ["services/model/src/*"],
-      "@app/users/*": ["services/users/src/*"]
+      "@app/http/*": ["libs/http/src/lib/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

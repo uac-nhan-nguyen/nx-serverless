@@ -7,6 +7,6 @@ export const env: Environment = {
   jwtSecret: 'secret',
   dynamo: {
     // endpoint: 'http://localhost:4566',
-    tableName: `dev-AppTable`,
+    tableName: `nx-test-dev`,
   },
 };

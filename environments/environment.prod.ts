@@ -5,7 +5,7 @@ export const env: Environment = {
   profile: 'nftjam',
   jwtSecret: '<SECRET>',
   dynamo: {
-    tableName: `prod-AppTable`,
+    tableName: `nx-test-prod`,
   },
   region: 'us-east-2',
 };
