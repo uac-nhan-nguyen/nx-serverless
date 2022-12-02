@@ -22,6 +22,8 @@ Default environment is `dev`
 - [x] Simple ping-post
 - [x] Simple ping-list
 - [x] Simple Ping model
+- [ ] Add vite frontend portal
+- [ ] Add nextjs frontend
 
 ## How To
 
