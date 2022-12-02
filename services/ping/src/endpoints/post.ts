@@ -1,25 +1,29 @@
 import {APIResponse, createPOST, parseRequestBody} from "@app/http";
 import {JSONSchemaType} from "ajv";
+import {PingRepo} from "@app/model";
 
 export const handler = createPOST<Payload>(async (event) => {
-  const {email, name} = event.data;
+  const {email, message} = event.data;
+
+  const item = await PingRepo.add(email, {message});
 
   return APIResponse.OK({
-    email, name
+    email,
+    item,
   });
 })
 
 type Payload = {
   email: string;
-  name: string;
+  message: string;
 }
 
 const inputSchema: JSONSchemaType<Payload> = {
   type: 'object',
-  required: ['email', 'name'],
+  required: ['email', 'message'],
   properties: {
     email: {type: 'string', format: 'email'},
-    name: {type: 'string'}
+    message: {type: 'string'},
   }
 }
 

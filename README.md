@@ -6,7 +6,7 @@ Nx Serverless ajv flavor
 - [ ] Add cognito auth
 - [ ] Watch changes when serve
 - [x] Simple ping-get
-- [ ] Simple ping-post
+- [x] Simple ping-post
 - [x] Service generator
 - [ ] Model generator
 - [ ] Support aws layer

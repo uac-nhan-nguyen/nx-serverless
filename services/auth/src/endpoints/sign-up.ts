@@ -1,6 +1,6 @@
 import {APIResponse, createPOST, parseRequestBody} from "@app/http";
 import {JSONSchemaType} from "ajv";
-import {UserRepo} from "libs/model/src/lib/user.model";
+import {UserRepo} from "libs/model/src/lib/User";
 import {createJWT} from '../auth.utils';
 
 

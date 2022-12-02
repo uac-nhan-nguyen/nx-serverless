@@ -4,19 +4,23 @@
   "$id": "http-handler",
   "type": "object",
   "properties": {
+    "project": {
+      "type": "string",
+      "description": "Project name",
+      "x-prompt": "What is the name of the project?",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
     "name": {
       "type": "string",
       "description": "Handler name",
       "x-prompt": "What is the name of the handler?",
       "$default": {
         "$source": "argv",
-        "index": 0
+        "index": 1
       }
-    },
-    "project": {
-      "type": "string",
-      "description": "Project name",
-      "x-prompt": "What is the name of the project?"
     },
     "method": {
       "description": "The HTTP method",
@@ -64,12 +68,20 @@
             "label": "OPTIONS"
           }
         ]
+      },
+      "$default": {
+        "$source": "argv",
+        "index": 2
       }
     },
     "path": {
       "type": "string",
       "description": "Path of the handler",
-      "x-prompt": "What is the handler path?"
+      "x-prompt": "What is the handler path?",
+      "$default": {
+        "$source": "argv",
+        "index": 3
+      }
     }
   },
   "required": [

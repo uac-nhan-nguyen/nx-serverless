@@ -1,9 +1,25 @@
-import type { Serverless } from 'serverless/aws';
-import { baseServerlessConfig } from '../../serverless.base';
+import type {Serverless} from 'serverless/aws';
+import {baseServerlessConfig} from '../../serverless.base';
+import { tableResource } from '../../environments/environment.serverless';
 
 const serverlessConfig: Partial<Serverless> = {
   ...baseServerlessConfig,
   service: 'ping',
+  provider: {
+    ...baseServerlessConfig.provider,
+    name: "aws",
+    iam: {
+      role: {
+        statements: [
+          {
+            Effect: 'Allow',
+            Action: ['dynamodb:PutItem', 'dynamodb:QueryItem', 'dynamodb:GetItem'],
+            Resource: tableResource,
+          },
+        ],
+      },
+    },
+  },
   custom: {
     ...baseServerlessConfig.custom,
     'serverless-offline': {
@@ -27,6 +43,15 @@ const serverlessConfig: Partial<Serverless> = {
         http: {
           method: 'post',
           path: 'ping'
+        }
+      }]
+    },
+    'list': {
+      handler: 'src/endpoints/list.handler',
+      events: [{
+        http: {
+          method: 'get',
+          path: 'ping/list'
         }
       }]
     }

@@ -12,15 +12,9 @@
         "$source": "argv",
         "index": 0
       }
-    },
-    "project": {
-      "type": "string",
-      "description": "Project name",
-      "x-prompt": "What is the name of the project?"
     }
   },
   "required": [
-    "name",
-    "project"
+    "name"
   ]
 }

@@ -15,12 +15,12 @@ export const db = new DocumentClient({
 type DataKeys = {
   PK: string,
   SK: string,
-  G1PK?: string,
-  G1SK?: string,
-  G2PK?: string,
-  G2SK?: string,
-  G3PK?: string,
-  G3SK?: string,
+  GSI1PK?: string,
+  GSI1SK?: string,
+  GSI2PK?: string,
+  GSI2SK?: string,
+  GSI3PK?: string,
+  GSI3SK?: string,
 }
 
 export type UpdateTransaction<T extends DataKeys> = DocumentClient.Update & {

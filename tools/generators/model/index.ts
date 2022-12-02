@@ -4,16 +4,19 @@ import {
   installPackagesTask,
   names,
   generateFiles,
-  joinPathFragments,
+  joinPathFragments, getProjects, logger,
 } from '@nrwl/devkit';
 
 interface Schema {
   name: string;
-  project: string;
 }
 
 export default async function (tree: Tree, schema: Schema) {
-  const serviceRoot = `services/${schema.project}/src`;
+  // if (!getProjects(tree).has(schema.project)) {
+  //   logger.error(`Project ${schema.project} does not exist.`);
+  //   return;
+  // }
+  const serviceRoot = `libs/model/src`;
 
   generateFiles(tree, joinPathFragments(__dirname, './files'), serviceRoot, {
     ...schema,

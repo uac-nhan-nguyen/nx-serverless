@@ -17,6 +17,7 @@
     "workspace-generator": "nx workspace-generator",
     "test:affected": "nx affected:test --base=origin/main --head=HEAD",
     "deploy:affected": "nx affected --target=deploy --all",
+    "deploy:affected:lastCommit": "nx affected --target=deploy --base=main~1 head=HEAD",
     "lint:affected": "nx affected:lint --base=origin/main --head=HEAD",
     "g:http-handler": " npx nx workspace-generator http-handler",
     "g:handler": " npx nx workspace-generator handler",

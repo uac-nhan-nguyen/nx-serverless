@@ -1,0 +1,83 @@
+import {buildUpdateExpression, getItem, putItemIfNotNull, queryItems, updateItem} from "@app/db/dynamo-utils";
+import {MAIN_TABLE} from "@app/common";
+
+// prettier-ignore
+export interface <%= className %>Data {
+  PK: `<%= className %>#${string}`;
+  SK: '#';
+  GSI1PK: '<%= className %>';         // -> query all items
+  GSI1SK: string;                     // {createdTime}  -> sort by created time
+
+  /// Default
+  createdAt: number;
+  updatedAt: number;
+
+  /// Data should be at second level
+  data: {
+    name: string;
+    country: string;
+  }
+}
+
+export class <%= className %>Repo {
+  static async add(id: string, props: <%= className %>Data['data']) : Promise<<%= className %>Data | null> {
+    const now = Date.now()
+    const item: <%= className %>Data = {
+      PK: `<%= className %>#${id}`,
+      SK: "#",
+      GSI1PK: "<%= className %>",
+      GSI1SK: `${now}`,
+      createdAt: now,
+      updatedAt: now,
+      data: props
+    }
+
+    const added = await putItemIfNotNull({
+      TableName: MAIN_TABLE,
+      Item: item,
+    })
+    return added ? item : null;
+  }
+
+  static async list() : Promise<<%= className %>Data[]> {
+    const r = await queryItems<<%= className %>Data>({
+      TableName: MAIN_TABLE,
+      KeyConditionExpression: "#GSI1PK = :GSI1PK",
+      ExpressionAttributeNames: {
+        "#GSI1PK": "GSI1PK",
+      },
+      ExpressionAttributeValues: {
+        ":GSI1PK": "<%= className %>"
+      },
+    })
+    return r.items;
+  }
+
+  static async get(id: string) : Promise<<%= className %>Data | null> {
+    return await getItem<<%= className %>Data>({
+      TableName: MAIN_TABLE,
+      Key: { PK: `<%= className %>#${id}`, SK: "#" }
+    })
+  }
+
+  static async update(id: string, props: <%= className %>Data['data']): Promise<<%= className %>Data> {
+    const r = await updateItem<<%= className %>Data>({
+      TableName: MAIN_TABLE,
+      Key: {PK: `<%= className %>#${id}`, SK: "#",},
+      ConditionExpression: "attribute_exists(#PK)",
+      UpdateExpression: buildUpdateExpression({
+        set: [
+          "#data = :data"
+        ]
+      }),
+      ExpressionAttributeNames: {
+        "#PK": "PK",
+        "#data": "data",
+      },
+      ExpressionAttributeValues: {
+        ":data": props
+      },
+    })
+    return r;
+  }
+}
