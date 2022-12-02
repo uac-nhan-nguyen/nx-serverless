@@ -6,6 +6,7 @@ export const handler = createPOST<Payload>(async (event) => {
   const {email, message} = event.data;
 
   const item = await PingRepo.add(email, {message});
+  console.log(`Ping written [${email}]: ${message}`);
 
   return APIResponse.OK({
     email,

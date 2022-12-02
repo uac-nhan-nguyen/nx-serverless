@@ -26,6 +26,14 @@
         "command": "sls logs --function {args.function}"
       }
     },
+    "upload": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "services/ping",
+        "color": true,
+        "command": "sls deploy --function {args.function}"
+      }
+    },
     "deploy": {
       "executor": "nx:run-commands",
       "options": {

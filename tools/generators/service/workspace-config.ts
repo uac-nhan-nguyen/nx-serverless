@@ -25,6 +25,12 @@ export const addWorkspaceConfig = (
       serve: {
         ...buildRunCommandConfig(serviceRoot, 'sls offline start'),
       },
+      logs: {
+        ...buildRunCommandConfig(serviceRoot, 'sls logs --function {args.function}'),
+      },
+      upload: {
+        ...buildRunCommandConfig(serviceRoot, 'sls deploy --function {args.function}'),
+      },
       deploy: {
         ...buildRunCommandConfig(serviceRoot, 'sls deploy --verbose'),
         dependsOn: [

@@ -23,7 +23,7 @@ export class PingRepo {
     const now = Date.now()
     const item: PingData = {
       PK: `Ping#${id}`,
-      SK: "#",
+      SK: `${now}`,
       GSI1PK: "Ping",
       GSI1SK: `${now}`,
       createdAt: now,
