@@ -1,5 +1,5 @@
 import {buildUpdateExpression, getItem, putItemIfNotNull, queryItems, updateItem} from "@app/db/dynamo-utils";
-import {MAIN_TABLE} from "@app/common";
+import {GSI1, MAIN_TABLE} from "@app/common";
 
 // prettier-ignore
 export interface PingData {
@@ -41,6 +41,7 @@ export class PingRepo {
   static async list(): Promise<PingData[]> {
     const r = await queryItems<PingData>({
       TableName: MAIN_TABLE,
+      IndexName: GSI1,
       KeyConditionExpression: "#GSI1PK = :GSI1PK",
       ExpressionAttributeNames: {
         "#GSI1PK": "GSI1PK",

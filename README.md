@@ -13,6 +13,7 @@ Nx Serverless ajv flavor
 - [ ] nx logs lambda
 - [ ] nx deploy function only
 - [x] serverless config only 1 version lambda 
+- [x] CDK for resource management
 
 # How To
 

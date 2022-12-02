@@ -1,5 +1,5 @@
 import {buildUpdateExpression, getItem, putItemIfNotNull, queryItems, updateItem} from "@app/db/dynamo-utils";
-import {MAIN_TABLE} from "@app/common";
+import {GSI1, MAIN_TABLE} from "@app/common";
 
 // prettier-ignore
 export interface <%= className %>Data {
@@ -42,6 +42,7 @@ export class <%= className %>Repo {
   static async list() : Promise<<%= className %>Data[]> {
     const r = await queryItems<<%= className %>Data>({
       TableName: MAIN_TABLE,
+      IndexName: GSI1,
       KeyConditionExpression: "#GSI1PK = :GSI1PK",
       ExpressionAttributeNames: {
         "#GSI1PK": "GSI1PK",
