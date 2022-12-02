@@ -17,10 +17,17 @@ export default async function (tree: Tree, schema: Schema) {
   //   return;
   // }
   const serviceRoot = `libs/model/src`;
+  const indexFile = `${serviceRoot}/index.ts`;
+  const n = names(schema.name);
+
+  let indexFileContent = tree.read(indexFile)?.toString('utf8') ?? '';
+  indexFileContent += `\nexport * from './lib/${n.className}'`
+  tree.write(indexFile, indexFileContent)
+
 
   generateFiles(tree, joinPathFragments(__dirname, './files'), serviceRoot, {
     ...schema,
     tmpl: '',
-    ...names(schema.name),
+    ...n,
   });
 }
