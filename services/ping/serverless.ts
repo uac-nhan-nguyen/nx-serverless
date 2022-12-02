@@ -13,7 +13,7 @@ const serverlessConfig: Partial<Serverless> = {
         statements: [
           {
             Effect: 'Allow',
-            Action: ['dynamodb:PutItem', 'dynamodb:QueryItem', 'dynamodb:GetItem'],
+            Action: ['dynamodb:PutItem', 'dynamodb:Query', 'dynamodb:GetItem'],
             Resource: tableResource,
           },
         ],
