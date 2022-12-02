@@ -1,6 +1,6 @@
 import type {Serverless} from 'serverless/aws';
 import {baseServerlessConfig} from '../../serverless.base';
-import { tableResource } from '../../environments/environment.serverless';
+import {tableIndex, tableResource} from '../../environments/environment.serverless';
 
 const serverlessConfig: Partial<Serverless> = {
   ...baseServerlessConfig,
@@ -13,8 +13,13 @@ const serverlessConfig: Partial<Serverless> = {
         statements: [
           {
             Effect: 'Allow',
-            Action: ['dynamodb:PutItem', 'dynamodb:Query', 'dynamodb:GetItem'],
+            Action: ['dynamodb:PutItem', 'dynamodb:GetItem'],
             Resource: tableResource,
+          },
+          {
+            Effect: 'Allow',
+            Action: ['dynamodb:Query'],
+            Resource: tableIndex,
           },
         ],
       },
