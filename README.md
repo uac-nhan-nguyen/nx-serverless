@@ -3,20 +3,20 @@
 Default aws profile is `nx-test`
 Default environment is `dev`
 
-## Features
+## Todos
 
 - [x] CDK for resource management
-- [x] Update `http-handler` generator
-- [x] Update `model` generator
 - [x] Access dev DB from local
 - [x] Remove DB creation
 - [ ] Add cognito auth
-- [ ] Add authorizer
+- [ ] Add api authorizer
 - [ ] Watch changes when serve
-- [x] Service generator
-- [ ] Support aws layer
+- [ ] Support aws layer?
 - [x] nx logs lambda -> `nx logs ping --function=post`
 - [x] nx deploy function only -> `nx upload ping --function=post`
+- [x] Update `http-handler` generator templates
+- [x] Update `model` generator templates
+- [x] Update `service` generator templates
 - [x] serverless config only 1 version lambda
 - [x] Simple ping-get
 - [x] Simple ping-post
