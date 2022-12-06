@@ -69,7 +69,7 @@
     "serverless-jest-plugin": "0.4.0",
     "serverless-localstack": "0.4.36",
     "serverless-offline": "8.8.0",
-    "ts-jest": "27.1.4",
+    "ts-jest": "^29.0.3",
     "ts-loader": "9.2.8",
     "ts-morph": "15.0.0",
     "ts-node": "9.1.1",
