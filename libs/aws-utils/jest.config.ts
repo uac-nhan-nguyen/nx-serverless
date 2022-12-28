@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'comb',
+  displayName: 'aws-utils',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/comb',
+  coverageDirectory: '../../coverage/libs/aws-utils',
 };

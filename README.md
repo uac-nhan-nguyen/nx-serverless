@@ -47,6 +47,9 @@ nx logs ping --function=get
 
 # Deploy all affected service
 nx affected --target=deploy --all
+
+# Build all affected service
+nx affected --target=build --all
 ```
 
 ### Configure AWS Profile and Region
@@ -78,6 +81,9 @@ yarn g:http-handler
 
 # Generate new lambda controller
 # TODO update doc
+
+# Generate library
+nx g lib <LIBRARY_NAME>
 ```
 
 ### Delete a service

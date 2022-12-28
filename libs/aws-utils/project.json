@@ -1,19 +1,19 @@
 {
-  "sourceRoot": "libs/comb/src",
+  "sourceRoot": "libs/aws-utils/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/comb/**/*.ts"]
+        "lintFilePatterns": ["libs/aws-utils/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/comb"],
+      "outputs": ["coverage/libs/aws-utils"],
       "options": {
-        "jestConfig": "libs/comb/jest.config.ts",
+        "jestConfig": "libs/aws-utils/jest.config.ts",
         "passWithNoTests": true
       }
     }

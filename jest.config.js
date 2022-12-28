@@ -5,6 +5,6 @@ module.exports = {
     '<rootDir>/libs/db',
     '<rootDir>/libs/common',
     '<rootDir>/services/ping',
-    '<rootDir>/libs/comb',
+    '<rootDir>/libs/aws-utils',
   ],
 };

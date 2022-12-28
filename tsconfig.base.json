@@ -20,7 +20,7 @@
     "types": ["node"],
     "paths": {
       "@app/auth/*": ["libs/auth/src/lib/*"],
-      "@app/comb": ["libs/comb/src/index.ts"],
+      "@app/aws-utils": ["libs/aws-utils/src/index.ts"],
       "@app/common": ["libs/common/src/index.ts"],
       "@app/db/*": ["libs/db/src/lib/*"],
       "@app/env": ["environments/environment.ts"],

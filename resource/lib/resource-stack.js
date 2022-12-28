@@ -1,4 +1,4 @@
-const { Stack, Duration } = require('aws-cdk-lib');
+const { Stack, Duration, aws_cognito} = require('aws-cdk-lib');
 // const sqs = require('aws-cdk-lib/aws-sqs');
 const dynamo = require('aws-cdk-lib/aws-dynamodb');
 
@@ -25,6 +25,10 @@ class ResourceStack extends Stack {
       sortKey: { name: "GSI1SK", type: "S" },
       projectionType: "ALL"
     })
+
+    const userPool = new aws_cognito.UserPool(this, 'nx-tester', { })
+    userPool.addClient('nx-tester-api');
+
 
     // The code that defines your stack goes here
 
