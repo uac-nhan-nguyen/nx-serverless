@@ -5,6 +5,10 @@ export interface Environment {
   jwtSecret: string;
   accessKeyId?: string,
   secretAccessKey?: string,
+  cognito: {
+    poolId: string,
+    clientId: string,
+  },
   dynamo: {
     endpoint?: string;
     tableName: string;

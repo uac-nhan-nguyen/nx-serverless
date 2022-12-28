@@ -12,7 +12,9 @@ class ResourceStack extends Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    const mainTable = new dynamo.Table(this, 'nx-test-dev', {
+    const env = 'dev';
+
+    const mainTable = new dynamo.Table(this, `nx-test-${env}`, {
       partitionKey: { name: "PK", type: "S" },
       sortKey: { name: "SK", type: "S" },
       tableName: 'nx-test-dev',
@@ -26,8 +28,21 @@ class ResourceStack extends Stack {
       projectionType: "ALL"
     })
 
-    const userPool = new aws_cognito.UserPool(this, 'nx-tester', { })
-    userPool.addClient('nx-tester-api');
+    const userPool = new aws_cognito.UserPool(this, `nx-test-pool-${env}`, {
+      userPoolName: `nx-test-pool-${env}`,
+      // standardAttributes: {
+      //   email:{
+      //     required: true
+      //   },
+      // },
+
+      signInAliases: {
+        email: true,
+      },
+    })
+    userPool.addClient(`nx-test-client-${env}`, {
+      userPoolClientName: `nx-test-client-${env}`
+    });
 
 
     // The code that defines your stack goes here

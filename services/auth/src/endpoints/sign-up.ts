@@ -7,7 +7,6 @@ import {createJWT} from '../auth.utils';
 export const handler = createPOST<Payload>(async (event) => {
   const {email, name} = event.data;
 
-  console.log(email)
   await UserRepo.create(email, {name});
 
   return APIResponse.OK({
