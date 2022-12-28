@@ -1,8 +1,5 @@
 # Nx Serverless ajv flavor
 
-Default aws profile is `nx-test`
-Default environment is `dev`
-
 ## Todos
 
 - [x] CDK for resource management
@@ -25,66 +22,66 @@ Default environment is `dev`
 - [ ] Add vite frontend portal
 - [ ] Add nextjs frontend
 
-## How To
+## Resource
+Resources such as S3, DynamoDB, Cognito are managed separately using CDK in [resource folder](./resource).
 
-### Deploy function only
+Commands
 
 ```shell
+cdk diff --profile nx-test
+cdk deploy --profile nx-test
+```
+
+## Deployment
+
+### Commands 
+
+```shell
+# Deploy function only
 nx upload <SERVICE_NAME> --function=<FUNCTION_NAME>
-```
+nx upload ping --function=post
 
-Example: `nx upload ping --function=post`
-
-### Logs a function
-
-```shell
+# Logs a function
 nx logs <SERVICE_NAME> --function=<FUNCTION_NAME>
-```
+nx logs ping --function=get
 
-Example: `nx logs ping --function=get`
-
-### Deploy all affected service
-
-```shell
+# Deploy all affected service
 nx affected --target=deploy --all
 ```
 
-### Add new service
+### Configure AWS Profile and Region
 
-```shell
-yarn g:service <SERVICE_NAME>
-```
-
-Example: `yarn g:service ping`
-
-A new service is equivalent to a new CloudFormation Stack. Service should only create new lambdas. Resources such as
-DynamoDB, Cognito User Pool, Secrets Manager are created and managed separately
-
-### Add new http controller
-
-```shell
-yarn g:http-handler
-```
-
-### Add new service
-
-```shell
-yarn g:service <SERVICE_NAME>
-```
-
-Example: `yarn g:service ping`
-
-### Add new lambda controller
-
-TODO
-
-### Delete a service
-
-1. Delete the folder
-2. Delete declaration in `workspace.json`
+Default AWS profile and region is configurable in [environment.ts](./environments/environment.ts);
 
 ### Use another environment
 
 Append `NODE_ENV=<ENV>` in front of the command
 
 Example `NODE_ENV=prod nx logs ping --function=post`
+
+Environments are configurable in [environments folder](./environments)
+
+## Generate Codes
+
+A new service is equivalent to a new CloudFormation Stack. Service should only create new lambdas. Resources such as
+DynamoDB, Cognito User Pool, Secrets Manager are created and managed separately
+
+### Commands
+
+```shell
+# Generate new service
+yarn g:service <SERVICE_NAME>
+yarn g:service ping
+
+# Generate new http controller
+yarn g:http-handler
+
+# Generate new lambda controller
+# TODO update doc
+```
+
+### Delete a service
+
+1. Delete the folder
+2. Delete declaration in `workspace.json`
+

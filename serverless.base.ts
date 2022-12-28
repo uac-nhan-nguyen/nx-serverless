@@ -1,5 +1,5 @@
 import type { Serverless } from 'serverless/aws';
-import { env, envName } from './environments/environment.serverless';
+import { env, envName } from './environments/config.serverless';
 
 console.log(`-------------- USING ENV: ${env.name} ----------------`);
 

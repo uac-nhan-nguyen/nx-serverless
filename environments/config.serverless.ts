@@ -1,5 +1,8 @@
-// Serverless configuration files don't work with esbuild,
-// so this workaround must be used when environment variables are needed in the serverless configuration files.
+/**
+ * - Change to config.serverless.ts to avoid confusion with other environment files
+ * Serverless configuration files don't work with esbuild,
+ * so this workaround must be used when environment variables are needed in the serverless configuration files.
+ */
 export const envName = process.env.NODE_ENV;
 const envFile = process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : '';
 

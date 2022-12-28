@@ -1,7 +1,9 @@
 import type { Environment } from './environment.types';
 import * as fs from "fs";
 import * as os from "os";
+import {env as defaultEnv} from './environment'
 
+/// credential is needed for initializing DynamoDB client
 const getCredentials = (name) => {
   const file = Buffer.from(fs.readFileSync(`${os.homedir()}/.aws/credentials`)).toString('utf-8');
   const lines = file.split('\n');
@@ -16,12 +18,12 @@ const getCredentials = (name) => {
   throw `Credential [${name}] not found`;
 }
 
-const profile = 'nx-test'
+const profile = defaultEnv.profile
 
 export const env: Environment = {
   name: 'local',
-  region: 'us-east-2',
   profile: profile,
+  region: defaultEnv.region,
   jwtSecret: 'secret',
   ...getCredentials(profile),
   dynamo: {

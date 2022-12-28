@@ -1,6 +1,6 @@
 import type {Serverless} from 'serverless/aws';
 import {baseServerlessConfig} from '../../serverless.base';
-import {tableIndex, tableResource} from '../../environments/environment.serverless';
+import {tableIndex, tableResource} from '../../environments/config.serverless';
 
 const serverlessConfig: Partial<Serverless> = {
   ...baseServerlessConfig,
