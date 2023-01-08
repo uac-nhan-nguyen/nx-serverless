@@ -1,0 +1,16 @@
+service: nx-test-ping
+frameworkVersion: '3'
+useDotenv: true
+
+package:
+  individually: true
+  excludeDevDependencies: true
+
+plugins: ${file(../serverless.base.yml):plugins}
+
+custom: ${file(../serverless.base.yml):custom}
+
+provider: ${file(../serverless.base.yml):provider}
+
+functions:
+  - ${file(./src/endpoints.yml)}

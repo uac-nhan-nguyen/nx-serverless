@@ -1,0 +1,56 @@
+service: nx-test-httpapi
+frameworkVersion: '3'
+
+package:
+  individually: true
+
+plugins:
+  - serverless-esbuild
+
+custom:
+  apiVersion: v1
+  accountID: ${file(../serverless.base.yml):custom.accountID}
+  esbuild:
+    bundle: true
+    minify: true
+  env: ${file(../dotenv-loader.js)}
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  profile: ${file(../serverless.base.yml):provider.profile}
+  region: ${file(../serverless.base.yml):provider.region}
+  versionFunctions: false
+
+  environment:
+    ENVIRONMENT: ${sls:stage}
+
+  httpApi:
+    cors:
+      allowMethods:
+        - PUT
+        - GET
+        - POST
+        - DELETE
+      allowOrigins:
+        - localhost:3000
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+        - did-document
+        - X-Amz-Date
+        - X-Api-Key
+        - X-Amz-Security-Token
+        - X-Amz-User-Agent
+    authorizers:
+      apiAuthorizer:
+        type: request
+        functionName: api-authorizer
+        payloadVersion: '2.0'
+        resultTtlInSeconds: 3600
+        identitySource:
+          - $request.header.Authorization
+
+functions:
+  - ${file(./src/authorizers/authorizers.yml)}
+  - ${file(./src/endpoints/endpoints.yml)}

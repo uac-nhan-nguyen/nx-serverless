@@ -1,0 +1,62 @@
+{
+  "projectType": "application",
+  "sourceRoot": "services/httpapi/src",
+  "targets": {
+    "package": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "services/httpapi",
+        "color": true,
+        "command": "sls package"
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "services/httpapi",
+        "color": true,
+        "command": "sls offline start"
+      }
+    },
+    "logs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "services/httpapi",
+        "color": true,
+        "command": "sls logs --function {args.function}"
+      }
+    },
+    "upload": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "services/httpapi",
+        "color": true,
+        "command": "sls deploy --function {args.function}"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "services/httpapi",
+        "color": true,
+        "command": "sls deploy --verbose"
+      },
+      "dependsOn": [
+        {
+          "target": "deploy",
+          "projects": "dependencies"
+        }
+      ]
+    },
+    "remove": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "services/httpapi",
+        "color": true,
+        "command": "sls remove"
+      }
+    }
+  },
+  "tags": ["service"],
+  "implicitDependencies": []
+}

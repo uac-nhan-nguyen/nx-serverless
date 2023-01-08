@@ -1,14 +1,8 @@
 import * as AWS from 'aws-sdk';
-import {env} from "@app/env";
-
-const cred = env.accessKeyId && env.secretAccessKey ? new AWS.Credentials({
-  accessKeyId: env.accessKeyId,
-  secretAccessKey: env.secretAccessKey,
-}) : undefined
+import {REGION} from "@app/common";
 
 export const cognito = new AWS.CognitoIdentityServiceProvider({
-  region: env.region,
-  credentials: cred,
+  region: REGION,
 })
 
 export const getCognitoPoolId = async (name) => {

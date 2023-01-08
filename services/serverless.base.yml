@@ -1,0 +1,53 @@
+plugins:
+  - serverless-offline
+  - serverless-esbuild
+  - ../../serverless-plugins/get-http-api-plugin.js
+
+custom:
+  apiVersion: v1
+  accountID: 216173714493
+
+  esbuild:
+    bundle: true
+    minify: true
+
+  env: ${file(../dotenv-loader.js)}
+
+  httpApiName: ${sls:stage}-nx-test-httpapi
+  apiAuthorizer: ${fetchAuthorizer(${self:custom.httpApiName},apiAuthorizer)}
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-2
+  profile: nx-test
+
+  versionFunctions: false
+
+  environment:
+    REGION: ${self:provider.region}
+    USER_TABLE: ${self:custom.env.USER_TABLE}
+    MINT_TABLE: ${self:custom.env.MINT_TABLE}
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:ConditionCheckItem
+          Resource:
+            - arn:aws:dynamodb:${self:provider.region}:${self:custom.accountID}:table/${self:provider.environment.USER_TABLE}
+
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+          Resource:
+            - arn:aws:dynamodb:${self:provider.region}:${self:custom.accountID}:table/${self:provider.environment.USER_TABLE}/index/*
+
+  httpApi:
+    id: ${fetchHttpApi(${self:custom.httpApiName})}

@@ -21,6 +21,9 @@
 - [x] Simple Ping model
 - [ ] Add vite frontend portal
 - [ ] Add nextjs frontend
+- [ ] Document for file layout
+- [ ] Add HttpAPI service
+
 
 ## Resource
 Resources such as S3, DynamoDB, Cognito are managed separately using CDK in [resource folder](./resource).
@@ -54,7 +57,7 @@ nx affected --target=build --all
 
 ### Configure AWS Profile and Region
 
-Default AWS profile and region is configurable in [environment.ts](./environments/environment.ts);
+Default AWS profile and region is configurable in [environment.ts](services/environments/environment.ts);
 
 ### Use another environment
 
@@ -62,7 +65,7 @@ Append `NODE_ENV=<ENV>` in front of the command
 
 Example `NODE_ENV=prod nx logs ping --function=post`
 
-Environments are configurable in [environments folder](./environments)
+Environments are configurable in [environments folder](services/environments)
 
 ## Generate Codes
 
@@ -91,3 +94,17 @@ nx g lib <LIBRARY_NAME>
 1. Delete the folder
 2. Delete declaration in `workspace.json`
 
+
+
+## File layout
+
+Layout for multiple independent services:
+
+```
+./
+├─ libs/
+├─ service-A/
+|  ├─ serverless.base.yml
+|  ├─ serverless.provider.yml
+├─ service-B/
+```

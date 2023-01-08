@@ -1,0 +1,11 @@
+ping:
+  handler: src/endpoints/ping.handler
+  events:
+    - httpApi:
+        path: /${self:custom.apiVersion}/httpapi/ping
+        method: get
+    - httpApi:
+        path: /${self:custom.apiVersion}/httpapi/ping/api
+        method: get
+        authorizer:
+          name: apiAuthorizer

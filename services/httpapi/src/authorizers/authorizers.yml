@@ -1,0 +1,2 @@
+api-authorizer:
+  handler: src/authorizers/api-authorizer.handler

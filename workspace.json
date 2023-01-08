@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "auth": "services/auth",
+    "httpapi": "services/httpapi",
     "aws-utils": "libs/aws-utils",
     "common": "libs/common",
     "db": "libs/db",

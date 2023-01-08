@@ -1,7 +1,8 @@
 import {APIResponse, createPOST, parseRequestBody} from "@app/http";
 import {JSONSchemaType} from "ajv";
 import {UserRepo} from "libs/model/src/lib/User";
-import {createJWT} from '../auth.utils';
+import jwt from 'jsonwebtoken'
+import {JWT_SECRET} from "@app/common";
 
 
 export const handler = createPOST<Payload>(async (event) => {
@@ -10,7 +11,7 @@ export const handler = createPOST<Payload>(async (event) => {
   await UserRepo.create(email, {name});
 
   return APIResponse.OK({
-    token: createJWT(email),
+    token: jwt.sign({email}, JWT_SECRET()),
   });
 })
 
